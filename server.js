@@ -40,3 +40,10 @@ let result = db.shops;
   }
    res.json(result);
 });
+app.get('/api/shops/:id', (req, res) => {
+  const db = readDB();
+  const shop = db.shops.find(s => s.id === req.params.id);
+  if (!shop) return res.status(404).json({ error: 'Shop not found' });
+  res.json(shop);
+});
+
