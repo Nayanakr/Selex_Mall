@@ -59,4 +59,21 @@ app.post('/api/shops', (req, res) => {
     phone: phone || '',
     createdAt: new Date().toISOString()
   };
+  db.shops.push(shop);
+  writeDB(db);
+  res.status(201).json(shop);
+});
+
+app.put('/api/shops/:id', (req, res) => {
+  const db = readDB();
+  const idx = db.shops.findIndex(s => s.id === req.params.id);
+
+  if (idx === -1) return res.status(404).json({ error: 'Shop not found' });
+
+  db.shops[idx] = { ...db.shops[idx], ...req.body };
+  writeDB(db);
+
+  res.json(db.shops[idx]);
+});
+
 
