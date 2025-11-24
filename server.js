@@ -22,3 +22,10 @@ function readDB() {
 function writeDB(data) {
   fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 }
+/* -----------------------
+   SHOPS CRUD
+------------------------- */
+
+app.get('/api/shops', (req, res) => {
+  const db = readDB();
+  const q = req.query.q ? req.query.q.toLowerCase() : null;
