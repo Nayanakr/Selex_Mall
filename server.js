@@ -75,5 +75,16 @@ app.put('/api/shops/:id', (req, res) => {
 
   res.json(db.shops[idx]);
 });
+app.delete('/api/shops/:id', (req, res) => {
+  const db = readDB();
+  const shopId = req.params.id;
+
+  db.shops = db.shops.filter(s => s.id !== shopId);
+  db.employees = db.employees.filter(e => e.shopId !== shopId);
+
+  writeDB(db);
+  res.status(204).end();
+});
+
 
 
