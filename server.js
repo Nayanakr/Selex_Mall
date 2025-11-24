@@ -30,3 +30,11 @@ function writeDB(data) {
 app.get('/api/shops', (req, res) => {
   const db = readDB();
   const q = req.query.q ? req.query.q.toLowerCase() : null;
+let result = db.shops;
+  if (q) {
+    result = result.filter(
+      s =>
+        s.name.toLowerCase().includes(q) ||
+        (s.category || '').toLowerCase().includes(q)
+    );
+  }
