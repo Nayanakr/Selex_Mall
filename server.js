@@ -46,4 +46,8 @@ app.get('/api/shops/:id', (req, res) => {
   if (!shop) return res.status(404).json({ error: 'Shop not found' });
   res.json(shop);
 });
+app.post('/api/shops', (req, res) => {
+  const db = readDB();
+  const { name, category, location, phone } = req.body;
 
+  if (!name) return res.status(400).json({ error: 'Name is required' });
