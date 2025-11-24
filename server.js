@@ -38,3 +38,5 @@ let result = db.shops;
         (s.category || '').toLowerCase().includes(q)
     );
   }
+   res.json(result);
+});
