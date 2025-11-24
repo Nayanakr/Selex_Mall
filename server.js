@@ -51,3 +51,12 @@ app.post('/api/shops', (req, res) => {
   const { name, category, location, phone } = req.body;
 
   if (!name) return res.status(400).json({ error: 'Name is required' });
+  const shop = {
+    id: 'shop_' + randomUUID(),
+    name,
+    category: category || '',
+    location: location || '',
+    phone: phone || '',
+    createdAt: new Date().toISOString()
+  };
+
