@@ -48,7 +48,7 @@ app.get('/api/shops/:id', (req, res) => {
 });
 app.post('/api/shops', (req, res) => {
   const db = readDB();
-  const { name, category, location,  } = req.body;
+  const { name, category, location, phone  } = req.body;
 
   if (!name) return res.status(400).json({ error: 'Name is required' });
   const shop = {
