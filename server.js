@@ -85,6 +85,18 @@ app.delete('/api/shops/:id', (req, res) => {
   writeDB(db);
   res.status(204).end();
 });
+/* -----------------------
+   EMPLOYEES CRUD
+------------------------- */
 
+app.get('/api/employees', (req, res) => {
+  const db = readDB();
+  const shopId = req.query.shopId;
+
+  let result = db.employees;
+  if (shopId) result = result.filter(e => e.shopId === shopId);
+
+  res.json(result);
+});
 
 
