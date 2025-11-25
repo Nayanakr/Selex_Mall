@@ -126,6 +126,17 @@ app.post('/api/employees', (req, res) => {
 
   res.status(201).json(emp);
 });
+app.put('/api/employees/:id', (req, res) => {
+  const db = readDB();
+  const idx = db.employees.findIndex(e => e.id === req.params.id);
+
+  if (idx === -1) return res.status(404).json({ error: 'Employee not found' });
+
+  db.employees[idx] = { ...db.employees[idx], ...req.body };
+  writeDB(db);
+
+  res.json(db.employees[idx]);
+});
 
 
 
