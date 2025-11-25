@@ -98,5 +98,13 @@ app.get('/api/employees', (req, res) => {
 
   res.json(result);
 });
+app.get('/api/employees/:id', (req, res) => {
+  const db = readDB();
+  const emp = db.employees.find(e => e.id === req.params.id);
+
+  if (!emp) return res.status(404).json({ error: 'Employee not found' });
+
+  res.json(emp);
+});
 
 
