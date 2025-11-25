@@ -106,5 +106,12 @@ app.get('/api/employees/:id', (req, res) => {
 
   res.json(emp);
 });
+app.post('/api/employees', (req, res) => {
+  const db = readDB();
+  const { firstName, lastName, role, shopId, email } = req.body;
+
+  if (!firstName || !lastName)
+    return res.status(400).json({ error: 'firstName and lastName required' });
+
 
 
