@@ -137,7 +137,13 @@ app.put('/api/employees/:id', (req, res) => {
 
   res.json(db.employees[idx]);
 });
+app.delete('/api/employees/:id', (req, res) => {
+  const db = readDB();
+  db.employees = db.employees.filter(e => e.id !== req.params.id);
+  writeDB(db);
 
+  res.status(204).end();
+});
 
 
 
