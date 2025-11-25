@@ -147,7 +147,13 @@ app.delete('/api/employees/:id', (req, res) => {
 /* -----------------------
    SHOP → EMPLOYEES RELATION
 ------------------------- */
+app.get('/api/shops/:id/employees', (req, res) => {
+  const db = readDB();
+  const shopId = req.params.id;
 
+  const employees = db.employees.filter(e => e.shopId === shopId);
+  res.json(employees);
+});
 
 
 
