@@ -112,6 +112,21 @@ app.post('/api/employees', (req, res) => {
 
   if (!firstName || !lastName)
     return res.status(400).json({ error: 'firstName and lastName required' });
+   const emp = {
+    id: 'emp_' + randomUUID(),
+    firstName,
+    lastName,
+    role: role || '',
+    shopId: shopId || null,
+    email: email || ''
+  };
+
+  db.employees.push(emp);
+  writeDB(db);
+
+  res.status(201).json(emp);
+});
+
 
 
 
