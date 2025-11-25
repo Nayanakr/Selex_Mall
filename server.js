@@ -144,6 +144,10 @@ app.delete('/api/employees/:id', (req, res) => {
 
   res.status(204).end();
 });
+/* -----------------------
+   SHOP → EMPLOYEES RELATION
+------------------------- */
+
 
 
 
