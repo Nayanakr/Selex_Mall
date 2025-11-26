@@ -161,6 +161,19 @@ app.get('/api/shops/:id/employees', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
+/* -----------------------
+   START SERVER
+------------------------- */
+
+const PORT = process.env.PORT || 3000;
+
+if (require.main === module) {
+  app.listen(PORT, () =>
+    console.log(`Selex Mall API running at http://localhost:${PORT}`)
+  );
+}
+
+module.exports = app; // For Jest testing
 
 
 
