@@ -154,6 +154,14 @@ app.get('/api/shops/:id/employees', (req, res) => {
   const employees = db.employees.filter(e => e.shopId === shopId);
   res.json(employees);
 });
+/* -----------------------
+   HEALTH CHECK
+------------------------- */
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', time: new Date().toISOString() });
+});
+
 
 
 
