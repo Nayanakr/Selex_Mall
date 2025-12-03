@@ -223,6 +223,28 @@
   </div>
 
 </div>
+<!-- EDIT MODAL -->
+<div id="modal" class="modal-backdrop">
+  <div class="modal">
+    <h3 id="modal-title"></h3>
+    <div id="modal-body"></div>
+    <div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px;">
+      <button id="modal-cancel" class="btn ghost small">Cancel</button>
+      <button id="modal-save" class="btn small">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+async function api(path, opts={}) {
+  const res = await fetch('/api' + path, opts);
+  if (!res.ok && res.status !== 204) {
+    const txt = await res.text();
+    throw new Error(txt);
+  }
+  return res.status === 204 ? null : res.json();
+}
+
 
 
 
