@@ -255,6 +255,37 @@ function tabActive(x){
   document.getElementById('tab-emps').classList.toggle('active', x==='emps');
 }
 
+/* SHOPS */
+async function fetchShops(q=''){
+  const shops = await api('/shops' + (q?'?q='+encodeURIComponent(q):''));
+  const table = document.getElementById('shops-table');
+  table.innerHTML = '';
+  if(!shops.length){
+    document.getElementById('shops-empty').style.display='block';
+    return;
+  }
+  document.getElementById('shops-empty').style.display='none';
+  table.innerHTML = `
+    <thead><tr>
+      <th>Name</th><th>Category</th><th>Location</th><th>Phone</th><th>Actions</th>
+    </tr></thead><tbody></tbody>`;
+  const tbody = table.querySelector('tbody');
+  shops.forEach(s=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML = `
+      <td>${s.name}</td>
+      <td>${s.category}</td>
+      <td>${s.location}</td>
+      <td>${s.phone}</td>
+      <td>
+        <button class="btn small" onclick="editShop('${s.id}')">Edit</button>
+        <button class="btn small danger" onclick="deleteShop('${s.id}')">Delete</button>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+  fillShopSelect(shops);
+}
+
 
 
 
