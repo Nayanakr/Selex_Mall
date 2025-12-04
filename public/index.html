@@ -286,6 +286,16 @@ async function fetchShops(q=''){
   fillShopSelect(shops);
 }
 
+document.getElementById('btn-create-shop').onclick = async ()=>{
+  const payload = {
+    name:document.getElementById('shop-name').value,
+    category:document.getElementById('shop-category').value,
+    location:document.getElementById('shop-location').value,
+    phone:document.getElementById('shop-phone').value
+  };
+  await api('/shops',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  fetchShops();
+};
 
 
 
