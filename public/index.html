@@ -297,6 +297,10 @@ document.getElementById('btn-create-shop').onclick = async ()=>{
   fetchShops();
 };
 
+document.getElementById('btn-search-shops').onclick=()=>fetchShops(document.getElementById('search-shops').value);
+document.getElementById('btn-refresh-shops').onclick=()=>{document.getElementById('search-shops').value='';fetchShops();};
+
+
 
 
 
