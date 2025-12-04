@@ -245,6 +245,15 @@ async function api(path, opts={}) {
   return res.status === 204 ? null : res.json();
 }
 
+/* TAB HANDLING */
+const shopsView = document.getElementById('shops-view');
+const empsView = document.getElementById('emps-view');
+document.getElementById('tab-shops').onclick = () => { shopsView.style.display='block'; empsView.style.display='none'; tabActive('shops'); };
+document.getElementById('tab-emps').onclick = () => { shopsView.style.display='none'; empsView.style.display='block'; tabActive('emps'); };
+function tabActive(x){
+  document.getElementById('tab-shops').classList.toggle('active', x==='shops');
+  document.getElementById('tab-emps').classList.toggle('active', x==='emps');
+}
 
 
 
