@@ -344,6 +344,16 @@ document.getElementById('btn-create-emp').onclick = async ()=>{
   fetchEmployees();
 };
 
+/* Select fill */
+function fillShopSelect(shops){
+  const sel=document.getElementById('emp-shop-select');
+  sel.innerHTML='<option value="">Assign to shop</option>';
+  shops.forEach(s=>{
+    const o=document.createElement('option');o.value=s.id;o.text=s.name;sel.appendChild(o);
+  });
+}
+
+
 
 
 
