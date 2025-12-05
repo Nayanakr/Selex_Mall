@@ -300,6 +300,37 @@ document.getElementById('btn-create-shop').onclick = async ()=>{
 document.getElementById('btn-search-shops').onclick=()=>fetchShops(document.getElementById('search-shops').value);
 document.getElementById('btn-refresh-shops').onclick=()=>{document.getElementById('search-shops').value='';fetchShops();};
 
+/* EMPLOYEES */
+async function fetchEmployees(){
+  const emps = await api('/employees');
+  const shops = await api('/shops');
+  const table = document.getElementById('emps-table');
+  table.innerHTML = '';
+  if(!emps.length){
+    document.getElementById('emps-empty').style.display='block';
+    return;
+  }
+  document.getElementById('emps-empty').style.display='none';
+  const map = Object.fromEntries(shops.map(s=>[s.id,s.name]));
+  table.innerHTML = `
+    <thead><tr>
+      <th>Name</th><th>Role</th><th>Shop</th><th>Email</th><th>Actions</th>
+    </tr></thead><tbody></tbody>`;
+  const tbody = table.querySelector('tbody');
+  emps.forEach(e=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML = `
+      <td>${e.firstName} ${e.lastName}</td>
+      <td>${e.role}</td>
+      <td>${map[e.shopId]||''}</td>
+      <td>${e.email||''}</td>
+      <td>
+        <button class="btn small" onclick="editEmp('${e.id}')">Edit</button>
+        <button class="btn small danger" onclick="deleteEmp('${e.id}')">Delete</button>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
 
 
 
