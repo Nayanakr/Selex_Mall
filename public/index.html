@@ -353,6 +353,76 @@ function fillShopSelect(shops){
   });
 }
 
+/* DELETE */
+async function deleteShop(id){ if(confirm("Delete shop?")){ await api('/shops/'+id,{method:'DELETE'}); fetchShops();fetchEmployees(); } }
+async function deleteEmp(id){ if(confirm("Delete employee?")){ await api('/employees/'+id,{method:'DELETE'}); fetchEmployees(); } }
+
+/* EDIT (modal) */
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modal-title');
+const modalBody = document.getElementById('modal-body');
+const modalSave = document.getElementById('modal-save');
+document.getElementById('modal-cancel').onclick = ()=>modal.style.display='none';
+
+async function editShop(id){
+  const shop=await api('/shops/'+id);
+  modalTitle.textContent="Edit Shop";
+  modalBody.innerHTML=`
+    <input id="m-name" value="${shop.name}">
+    <input id="m-cat" value="${shop.category}">
+    <input id="m-loc" value="${shop.location}">
+    <input id="m-ph" value="${shop.phone}">
+  `;
+  modal.style.display='flex';
+  modalSave.onclick=async ()=>{
+    const payload={
+      name:document.getElementById('m-name').value,
+      category:document.getElementById('m-cat').value,
+      location:document.getElementById('m-loc').value,
+      phone:document.getElementById('m-ph').value
+    };
+    await api('/shops/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    modal.style.display='none';
+    fetchShops();
+    fetchEmployees();
+  };
+}
+
+async function editEmp(id){
+  const emp=await api('/employees/'+id);
+  const shops=await api('/shops');
+  modalTitle.textContent="Edit Employee";
+  modalBody.innerHTML=`
+    <input id="m-first" value="${emp.firstName}">
+    <input id="m-last" value="${emp.lastName}">
+    <input id="m-role" value="${emp.role}">
+    <select id="m-shop">${shops.map(s=>`<option value="${s.id}" ${s.id===emp.shopId?'selected':''}>${s.name}</option>`).join('')}</select>
+    <input id="m-email" value="${emp.email||''}">
+  `;
+  modal.style.display='flex';
+  modalSave.onclick=async ()=>{
+    const payload={
+      firstName:document.getElementById('m-first').value,
+      lastName:document.getElementById('m-last').value,
+      role:document.getElementById('m-role').value,
+      shopId:document.getElementById('m-shop').value,
+      email:document.getElementById('m-email').value
+    };
+    await api('/employees/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    modal.style.display='none';
+    fetchEmployees();
+  };
+}
+
+/* INIT */
+fetchShops();
+fetchEmployees();
+</script>
+
+</body>
+</html>
+
+
 
 
 
