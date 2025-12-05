@@ -332,6 +332,18 @@ async function fetchEmployees(){
   });
 }
 
+document.getElementById('btn-create-emp').onclick = async ()=>{
+  const payload = {
+    firstName:document.getElementById('emp-first').value,
+    lastName:document.getElementById('emp-last').value,
+    role:document.getElementById('emp-role').value,
+    shopId:document.getElementById('emp-shop-select').value,
+    email:document.getElementById('emp-email').value
+  };
+  await api('/employees',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  fetchEmployees();
+};
+
 
 
 
