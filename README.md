@@ -5,7 +5,7 @@ HTML,CSS,and Javascript are used to create the interface,Node.js (Express) is us
 
 code reference :
 For the frontend : index.html ( i did the code myself)
-HTML,CSS i did myself and for javascript  when iam doing the code i stucked in a error ,so i just ask help from my friend whi os expert in javascript.
+HTML,CSS i did myself and for javascript  when iam doing the code i stucked in a error ,so i just ask help from my friend who is expert in javascript.
 https://youtu.be/-rNQeJi3Wp4?si=1CZNQVGho8R0fP5S
 https://youtu.be/gTD8b5Yxuuo?si=kbVvWc6VZ58xgEEE
 https://youtu.be/FazgJVnrVuI?si=eAsKWvuYXslL20CB
