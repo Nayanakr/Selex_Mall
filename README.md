@@ -10,6 +10,8 @@ https://youtu.be/-rNQeJi3Wp4?si=1CZNQVGho8R0fP5S
 https://youtu.be/gTD8b5Yxuuo?si=kbVvWc6VZ58xgEEE
 https://youtu.be/FazgJVnrVuI?si=eAsKWvuYXslL20CB
 https://youtu.be/F4zr1aMevB4?si=S5xQ_o5nOsnAFGOw
+https://docs.weweb.io/web-development-basics/understanding-html-css-javascript.html
+https://stackoverflow.com/questions/66401961/reference-in-html-css
 
 for backend (server.js) i took help from chatgpt and i edited that code for my requirements and here iam providing the link for chat.
 
